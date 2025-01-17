@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate, useParams } from 'react-router-dom';
+const apiUrl = process.env.URLContact;
 
 const EditContact = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const EditContact = () => {
       }
 
       try {
-        const response = await axios.get(`http://localhost:5000/api/contacts/${id}`, {
+        const response = await axios.get(apiUrl+`/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -61,7 +62,7 @@ const EditContact = () => {
 
     try {
       await axios.put(
-        `http://localhost:5000/api/contacts/${id}`,
+        apiUrl+`/${id}`,
         {
           name: formData.name,
           phone: formData.phone,

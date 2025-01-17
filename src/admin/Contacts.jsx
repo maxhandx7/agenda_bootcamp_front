@@ -4,6 +4,7 @@ import DataTable from 'react-data-table-component';
 import Swal from 'sweetalert2';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
+const apiUrl = process.env.URLContact;
 
 
 const Contacts = () => {
@@ -14,7 +15,7 @@ const Contacts = () => {
     const fetchContacts = async () => {
       try {
         const token = localStorage.getItem('token'); // Obtener el token
-        const resuyponse = await axios.get('http://localhost:5000/api/contacts', {
+        const resuyponse = await axios.get(apiUrl, {
           headers: {
             Authorization: `Bearer ${token}` 
           }
@@ -41,7 +42,7 @@ const Contacts = () => {
       if (result.isConfirmed) {
         const token = localStorage.getItem('token'); // Obtener el token
         axios
-          .delete(`http://localhost:5000/api/contacts/${id}`, {
+          .delete(apiUrl+`${id}`, {
             headers: {
               Authorization: `Bearer ${token}` // Incluir el token en los encabezados
             }

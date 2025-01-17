@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FaPhone, FaCamera, FaTrashAlt, FaPen } from 'react-icons/fa';
+const apiUrl = process.env.URLContact;
+const Url = process.env.URL;
 
 const ContactDetails = () => {
   const [contact, setContact] = useState(null);
@@ -13,7 +15,7 @@ const ContactDetails = () => {
     const fetchContact = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(`http://localhost:5000/api/contacts/${id}`, {
+        const response = await axios.get(apiUrl+`/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -43,7 +45,7 @@ const ContactDetails = () => {
       if (result.isConfirmed) {
         const token = localStorage.getItem('token');
         axios
-          .delete(`http://localhost:5000/api/contacts/${id}`, {
+          .delete(apiUrl`/${id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -73,7 +75,7 @@ const ContactDetails = () => {
         <div className="row">
           <div className="col-md-4">
             <img
-              src={contact.photo ? `http://localhost:5000/${contact.photo}` : 'https://unsplash.it/400/200'}
+              src={contact.photo ? Url+`/${contact.photo}` : 'https://unsplash.it/400/200'}
               className="card-img"
               style={{ width: '100px', height: '100px', borderRadius: '50%' }}
               alt="Contacto"
