@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FaUser, FaLock } from 'react-icons/fa';
-const ApiUrl = process.env.URLLogin;
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const ApiUrl = import.meta.env.VITE_URL_LOGIN;
 
   const handleLogin = async (e) => {
     e.preventDefault();

@@ -7,13 +7,14 @@ const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Estado para verificar si el usuario está logueado
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
+  const ApiUrl = import.meta.env.VITE_URL_USER;
 
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const response = await axios.get('http://localhost:5000/api/user', {
+          const response = await axios.get(ApiUrl, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

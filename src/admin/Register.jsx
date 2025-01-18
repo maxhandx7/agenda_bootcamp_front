@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-const ApiUrl = process.env.URLRegister;
+
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -10,6 +10,8 @@ const Register = () => {
     password: '',
     passwordConfirm: '',
   });
+  const ApiUrl = import.meta.env.VITE_URL_REGISTER;
+
   
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-const apiUrl = process.env.URLContact;
+
 
 const NewContact = () => {
   const [formData, setFormData] = useState({
@@ -10,7 +10,7 @@ const NewContact = () => {
     phone: '',
     photo: null,
   });
-
+  const apiUrl = import.meta.env.VITE_URL_CONTACT;
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 

@@ -3,19 +3,20 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { FaPhone, FaCamera, FaTrashAlt, FaPen } from 'react-icons/fa';
-const apiUrl = process.env.URLContact;
-const Url = process.env.URL;
+
 
 const ContactDetails = () => {
   const [contact, setContact] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { id } = useParams(); 
+  const { id } = useParams();
+  const apiUrl = import.meta.env.VITE_URL_CONTACT;
+  const Url = import.meta.env.VITE_URL;
 
   useEffect(() => {
     const fetchContact = async () => {
       try {
         const token = localStorage.getItem('token');
-        const response = await axios.get(apiUrl+`/${id}`, {
+        const response = await axios.get(apiUrl + `/${id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -75,7 +76,7 @@ const ContactDetails = () => {
         <div className="row">
           <div className="col-md-4">
             <img
-              src={contact.photo ? Url+`/${contact.photo}` : 'https://unsplash.it/400/200'}
+              src={contact.photo ? Url + `/${contact.photo}` : 'https://unsplash.it/400/200'}
               className="card-img"
               style={{ width: '100px', height: '100px', borderRadius: '50%' }}
               alt="Contacto"
@@ -92,10 +93,10 @@ const ContactDetails = () => {
                   className="btn btn-warning me-2"
                   onClick={() => window.location.href = `/edit-contact/${contact.id}`}
                 >
-                  <FaPen /> 
+                  <FaPen />
                 </button>
                 <button className="btn btn-danger" onClick={handleDelete}>
-                  <FaTrashAlt /> 
+                  <FaTrashAlt />
                 </button>
               </div>
             </div>

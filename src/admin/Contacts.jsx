@@ -4,12 +4,13 @@ import DataTable from 'react-data-table-component';
 import Swal from 'sweetalert2';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-const apiUrl = process.env.URLContact;
+
 
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_URL_CONTACT;
 
   useEffect(() => {
     const fetchContacts = async () => {
@@ -42,7 +43,7 @@ const Contacts = () => {
       if (result.isConfirmed) {
         const token = localStorage.getItem('token'); // Obtener el token
         axios
-          .delete(apiUrl+`${id}`, {
+          .delete(apiUrl+`/${id}`, {
             headers: {
               Authorization: `Bearer ${token}` // Incluir el token en los encabezados
             }

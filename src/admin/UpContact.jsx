@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useNavigate, useParams } from 'react-router-dom';
-const apiUrl = process.env.URLContact;
+
 
 const EditContact = () => {
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
   });
+
+  const apiUrl = import.meta.env.VITE_URL_CONTACT;
 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
