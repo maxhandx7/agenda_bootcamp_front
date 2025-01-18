@@ -16,20 +16,19 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-
-    <Router>
-    <Navbar />  
-      <Routes>
-        <Route path="/" element={<Login />} /> {/* Página de Login */}
-        <Route path="/contacts" element={<Contacts />} /> {/* Página de contactos */}
-        <Route path="/new-contact" element={<NewContacts />} /> {/* Página de nuevo contactos */}
-        <Route path="/edit-contact/:id" element={<EditContact />} /> {/* Página para editar */}
-        <Route path="/contact-details/:id" element={<Detalles />} /> {/* Página para editar */}
-        <Route path="/register" element={<Register />} /> {/* Pagina para registro */}
-      </Routes>
-      <Footer />  
-    </Router>
-    </header>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Login />} /> {/* Página de Login */}
+            <Route path="/contacts" element={<Contacts />} /> {/* Página de contactos */}
+            <Route path="/new-contact" element={<NewContacts />} /> {/* Página de nuevo contactos */}
+            <Route path="/edit-contact/:id" element={<EditContact />} /> {/* Página para editar */}
+            <Route path="/contact-details/:id" element={<Detalles />} /> {/* Página para editar */}
+            <Route path="/register" element={<Register />} /> {/* Pagina para registro */}
+          </Routes>
+          <Footer />
+        </Router>
+      </header>
     </div>
   );
 }
