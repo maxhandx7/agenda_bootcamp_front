@@ -104,7 +104,12 @@ const Register = () => {
           className="btn btn-primary"
           disabled={loading}
         >
-          {loading ? 'Registrando...' : 'Registrar'}
+          {loading ? (
+                  <>
+                    <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    <span className="sr-only">Registrando...</span> 
+                  </>
+                ) : 'Registrar'}
         </button>
       </form>
     </div>

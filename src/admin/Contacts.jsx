@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Contacts = () => {
   const [contacts, setContacts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const apiUrl = import.meta.env.VITE_URL_CONTACT;
 
@@ -18,12 +19,14 @@ const Contacts = () => {
         const token = localStorage.getItem('token'); // Obtener el token
         const resuyponse = await axios.get(apiUrl, {
           headers: {
-            Authorization: `Bearer ${token}` 
+            Authorization: `Bearer ${token}`
           }
         });
         setContacts(resuyponse.data);
       } catch (error) {
         console.error('Error al obtener los contactos:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -43,7 +46,7 @@ const Contacts = () => {
       if (result.isConfirmed) {
         const token = localStorage.getItem('token'); // Obtener el token
         axios
-          .delete(apiUrl+`/${id}`, {
+          .delete(apiUrl + `/${id}`, {
             headers: {
               Authorization: `Bearer ${token}` // Incluir el token en los encabezados
             }
@@ -55,7 +58,8 @@ const Contacts = () => {
           .catch((error) => {
             console.error('Error al eliminar el contacto:', error);
             Swal.fire('Error', 'No se pudo eliminar el contacto.', 'error');
-          });
+          }
+          );
       }
     });
   };
@@ -82,21 +86,27 @@ const Contacts = () => {
       cell: (row) => (
         <>
           <button
-          className="btn btn-sm btn-warning me-2"
-          onClick={() => navigate(`/edit-contact/${row.id}`)}
-        >
-          <FaEdit /> 
-        </button>
+            className="btn btn-sm btn-warning me-2"
+            onClick={() => navigate(`/edit-contact/${row.id}`)}
+          >
+            <FaEdit />
+          </button>
           <button
             className="btn btn-sm btn-danger"
             onClick={() => deleteContact(row.id)}
           >
-            <FaTrash /> 
+            <FaTrash />
           </button>
         </>
       ),
     },
   ];
+
+  if (loading) {
+    return <div className="spinner-border  mt-3" role="status">
+      <span className="sr-only">Loading...</span>
+    </div>;
+  }
 
   return (
     <div className="container mt-5">

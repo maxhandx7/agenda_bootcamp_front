@@ -63,7 +63,9 @@ const ContactDetails = () => {
   };
 
   if (loading) {
-    return <div className="text-center mt-5">Cargando...</div>;
+    return <div className="spinner-grow  mt-3"  role="status">
+      <span className="sr-only">Loading...</span>
+    </div>;
   }
 
   if (!contact) {

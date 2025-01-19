@@ -9,17 +9,19 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const ApiUrl = import.meta.env.VITE_URL_LOGIN;
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
       // Hacer la solicitud de login a la API
       const response = await axios.post(ApiUrl, {
         username,
         password
       });
+
 
       // Si el login es exitoso, redirigir al usuario
       if (response.data.token) {
@@ -29,10 +31,14 @@ const Login = () => {
       }
     } catch (error) {
       setError('Error al iniciar sesión. Verifica tus credenciales.');
+    } finally {
+      setLoading(false);
     }
-    
+
 
   };
+
+
 
   return (
     <div className="container mt-5">
@@ -68,8 +74,18 @@ const Login = () => {
                   required
                 />
               </div>
-              <button type="submit" className="btn btn-primary w-100">
-                Iniciar sesión
+              <button type="submit" className="btn btn-primary w-100"
+                disabled={loading}
+
+              >
+
+                {loading ? (
+                  <>
+                    <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    <span className="sr-only">Cargando...</span> 
+                  </>
+                ) : 'Iniciar sesión'}
+
               </button>
             </form>
           </div>

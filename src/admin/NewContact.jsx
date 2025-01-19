@@ -114,7 +114,12 @@ const NewContact = () => {
         </div>
 
         <button type="submit" className="btn btn-primary" disabled={loading}>
-          {loading ? 'Creando...' : 'Crear Contacto'}
+        {loading ? (
+                  <>
+                    <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    <span className="sr-only">Cargando...</span> Creando...
+                  </>
+                ) : 'Crear contacto'}
         </button>
       </form>
     </div>
