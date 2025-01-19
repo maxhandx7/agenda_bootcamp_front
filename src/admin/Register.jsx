@@ -10,7 +10,7 @@ const Register = () => {
     password: '',
     passwordConfirm: '',
   });
-  const ApiUrl = import.meta.env.VITE_URL_REGISTER;
+  const ApiUrl = "https://agenda-bootcamp-api.onrender.com/api/register";
 
   
   const [loading, setLoading] = useState(false);

@@ -10,7 +10,7 @@ const EditContact = () => {
     phone: '',
   });
 
-  const apiUrl = import.meta.env.VITE_URL_CONTACT;
+  const apiUrl = "https://agenda-bootcamp-api.onrender.com/api/contacts";
 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

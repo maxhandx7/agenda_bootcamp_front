@@ -9,8 +9,8 @@ const ContactDetails = () => {
   const [contact, setContact] = useState(null);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const apiUrl = import.meta.env.VITE_URL_CONTACT;
-  const Url = import.meta.env.VITE_URL;
+  const apiUrl = "https://agenda-bootcamp-api.onrender.com/api/contacts";
+  const Url = "https://agenda-bootcamp-api.onrender.com";
 
   useEffect(() => {
     const fetchContact = async () => {

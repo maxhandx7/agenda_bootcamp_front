@@ -11,7 +11,7 @@ const Contacts = () => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const apiUrl = import.meta.env.VITE_URL_CONTACT;
+  const apiUrl = "https://agenda-bootcamp-api.onrender.com/api/contacts";
 
   useEffect(() => {
     const fetchContacts = async () => {
